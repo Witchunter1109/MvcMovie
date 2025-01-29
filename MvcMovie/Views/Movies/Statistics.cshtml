@@ -1,0 +1,29 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Movie Statistics";
+}
+
+<h2>Movie Statistics</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Number of Reviews</th>
+            <th>Average Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.ReviewCount</td>
+                <td>@movie.AverageRating</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index">Back to Movie List</a>

@@ -1,0 +1,2 @@
+Domyślnie ASP.NET Core ma limit rozmiaru przesyłanych plików wynoszący 30 MB
+można go zwiększyć w pliku appsettings.json lub w konfiguracji Startup.cs/Program.cs
