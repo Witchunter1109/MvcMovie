@@ -74,8 +74,8 @@ namespace MvcMovie.Controllers
             }
 
             var movie = await _context.Movie
-                .Include(m => m.VideoFiles) // Załaduj powiązane pliki wideo
-                .Include(m => m.Reviews)  // Załaduj recenzje dla filmu
+                .Include(m => m.VideoFiles)
+                .Include(m => m.Reviews)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (movie == null)
@@ -242,10 +242,8 @@ namespace MvcMovie.Controllers
                 {
                     Console.WriteLine($"Otrzymano plik: {fileUpload.FileName} ({fileUpload.Length} bajtów)");
 
-                    // Ścieżka do folderu wwwroot/videos
                     var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "videos");
 
-                    // Sprawdzenie czy folder istnieje
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Console.WriteLine("Folder 'wwwroot/videos' nie istnieje. Tworzę nowy...");
@@ -253,13 +251,11 @@ namespace MvcMovie.Controllers
                         Console.WriteLine("Folder utworzony.");
                     }
 
-                    // Generowanie unikalnej nazwy pliku
                     var uniqueFileName = $"{Guid.NewGuid()}_{Path.GetFileName(fileUpload.FileName)}";
                     var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                     try
                     {
-                        // Kopiowanie pliku na serwer
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
                             await fileUpload.CopyToAsync(stream);
@@ -267,11 +263,10 @@ namespace MvcMovie.Controllers
 
                         Console.WriteLine($"Plik został zapisany na serwerze: {filePath}");
 
-                        // Tworzenie wpisu w bazie danych
                         var videoFile = new VideoFile
                         {
                             FileName = uniqueFileName,
-                            FilePath = $"/videos/{uniqueFileName}", // Ścieżka względna dla przeglądarki
+                            FilePath = $"/videos/{uniqueFileName}",
                             MovieId = movie.Id
                         };
 

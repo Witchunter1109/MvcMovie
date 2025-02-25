@@ -15,10 +15,9 @@ public static class SeedData
             serviceProvider.GetRequiredService<
                 DbContextOptions<MvcMovieContext>>()))
         {
-            // Look for any movies.
             if (context.Movie.Any())
             {
-                return;   // DB has been seeded
+                return;
             }
             context.Movie.AddRange(
                 new Movie
