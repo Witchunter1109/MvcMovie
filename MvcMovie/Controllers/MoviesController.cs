@@ -111,7 +111,6 @@ namespace MvcMovie.Controllers
 
         // POST: Movies/Edit/
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Rating")] Movie movie, IFormFile? fileUpload)
         {
             if (id != movie.Id)
@@ -209,7 +208,6 @@ namespace MvcMovie.Controllers
 
         // POST: Movies/Delete/
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var movie = await _context.Movie.FindAsync(id);
@@ -228,7 +226,6 @@ namespace MvcMovie.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie, IFormFile? fileUpload)
         {
             if (ModelState.IsValid)
@@ -292,7 +289,6 @@ namespace MvcMovie.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddReview(int rating, string comment, int movieId)
         {
             var review = new Review
