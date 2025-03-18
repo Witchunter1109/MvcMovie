@@ -64,7 +64,6 @@ namespace MvcMovie.Controllers
             return View(movieGenreVM);
         }
 
-
         // GET: Movies/Details/
         public async Task<IActionResult> Details(int? id)
         {
@@ -85,7 +84,6 @@ namespace MvcMovie.Controllers
 
             return View(movie);
         }
-
 
         // GET: Movies/Create
         public IActionResult Create()
@@ -186,7 +184,6 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
-
 
         // GET: Movies/Delete/
         public async Task<IActionResult> Delete(int? id)
@@ -319,7 +316,5 @@ namespace MvcMovie.Controllers
 
             return View(movieStats);
         }
-
-
     }
 }
